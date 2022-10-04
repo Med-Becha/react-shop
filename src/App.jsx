@@ -3,9 +3,16 @@ import Navbar from "./components/nav/Navbar";
 import Cart from "./pages/Cart";
 import Home from "./pages/Home";
 import Single from "./pages/Single";
+import {useDispatch, useSelector} from "react-redux"
+import {useEffect} from "react"
+import {actions as cartActions} from "./global/slices/cartSlice"
 
 
 function App() {
+  const dispatch = useDispatch()
+  const {items} = useSelector(state => state.cart)
+  useEffect(() => {dispatch(cartActions.calculateCartNumbers())}, [items])
+
   return (
     <div className="wrapper bg-dark text-white">
       <Navbar title="React Shop!"/>

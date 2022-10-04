@@ -21,7 +21,7 @@ const Product = ({ product = {} }) => {
           </div>
         </div>
         <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <Productbtn/>
+            <Productbtn product={product}/>
         </div>
       </div>
     </div>

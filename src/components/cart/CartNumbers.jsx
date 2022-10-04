@@ -1,17 +1,12 @@
-import React from "react";
+import { useSelector } from "react-redux";
 
 const CartNumbers = () => {
-  const CartNumbers = {
-    subtotal: 119.0,
-    shipping: 2.0,
-    tax: 11.9,
-    total: 132.9,
-  };
+  const {cartNumbers} = useSelector(state => state.cart)
   const row = [
-    { title: "subtotal", price: CartNumbers.total },
-    { title: "shipping", price: CartNumbers.shipping },
-    { title: "Tax", price: CartNumbers.tax },
-    { title: "total (TND)", price: CartNumbers.total },
+    { title: "subtotal", price: cartNumbers.subtotal },
+    { title: "shipping", price: cartNumbers.shipping },
+    { title: "Tax", price: cartNumbers.tax },
+    { title: "total (TND)", price: cartNumbers.total },
   ];
   return (
     <div id="cart-numbers">

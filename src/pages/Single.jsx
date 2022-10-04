@@ -1,13 +1,17 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import data from "../data";
+import { useDispatch, useSelector } from "react-redux";
 import Products from "../components/products/Products";
 import Productbtn from "../components/products/Productbtn.jsx";
 import Line from "../components/extra/Line";
+import { useEffect } from "react";
+import { actions } from "../global/slices/productsSlice";
 
 const Single = () => {
   const { id } = useParams();
-  const product = data.find((product) => product.id === +id);
+  const { single, singleSimilarProducts } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+  useEffect(() => {dispatch(actions.setSingle(id));}, [id]);
   return (
     <div>
       <div
@@ -16,22 +20,20 @@ const Single = () => {
       >
         <div className="col-md-6">
           <img
-            src={require(`../images/${product.id}.jpg`)}
+            src={require(`../images/${single.id}.jpg`)}
             alt=""
             className="card-img-top mb-5 mb-md-0 p-0 p-lg-5"
           />
         </div>
         <div className="col-md-6 text-center text-md-start">
-          <h2 className="fs-1 fw-bold">{product.name}</h2>
-          <div className="fs-5 mb-2">{product.price}</div>
-          <p className="lead">
-            {product.description}
-          </p>
-          <Productbtn />
+          <h2 className="fs-1 fw-bold">{single.name}</h2>
+          <div className="fs-5 mb-2">{single.price}</div>
+          <p className="lead">{single.description}</p>
+          <Productbtn product={single} />
         </div>
       </div>
       <Line />
-      <Products Products={data.slice(0,4)}/>
+      <Products Products={singleSimilarProducts} />
     </div>
   );
 };
