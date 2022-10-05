@@ -11,7 +11,7 @@ const Single = () => {
   const { id } = useParams();
   const { single, singleSimilarProducts } = useSelector((state) => state.products);
   const dispatch = useDispatch();
-  useEffect(() => {dispatch(actions.setSingle(id));}, [id]);
+  useEffect(() => {dispatch(actions.setSingle(id));}, [id, dispatch]);
   return (
     <div>
       <div
@@ -27,8 +27,11 @@ const Single = () => {
         </div>
         <div className="col-md-6 text-center text-md-start">
           <h2 className="fs-1 fw-bold">{single.name}</h2>
-          <div className="fs-5 mb-2">{single.price}</div>
-          <p className="lead">{single.description}</p>
+          <div className="fs-5 mb-2">
+            {single.price}
+            
+            </div>
+          <p className="lead">{single.description.substring(0,100)}</p>
           <Productbtn product={single} />
         </div>
       </div>

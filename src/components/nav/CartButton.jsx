@@ -1,9 +1,10 @@
 import { useNavigate } from 'react-router-dom'
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 const CartButton = () => {
   const nav = useNavigate()
-  const items = [1,3]
+  const {items} = useSelector(state => state.cart)
   const btnBgColor = (items.length === 0 ) ? "none" : "white"
 
   return (

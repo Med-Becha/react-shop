@@ -1,10 +1,12 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import CategorySelector from './CategorySelector'
 import Searchbar from './Searchbar'
 import CartButton from './CartButton'
+import Condition from "../extra/Condition"
 
-const Navbar = ({title}) => {
+const Navbar = ({title=""}) => {
+  const {pathname} = useLocation()
   const nav = useNavigate()
   return (
     <nav className='navbar navbar-expand-lg navbar-dark bg-dark border-bottom fixed-top'>
@@ -16,8 +18,10 @@ const Navbar = ({title}) => {
           <span className='navbar-toggler-icon'></span>
         </button>
         <div className='collapse navbar-collapse justify-content-end' id='navbarSupportedContent'>
-          <CategorySelector/>
-          <Searchbar/>
+          
+         
+
+          <Condition test={(pathname === "/")} success={<><CategorySelector/><Searchbar/></>}/>
           <CartButton/>
         </div>
       </div>

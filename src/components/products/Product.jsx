@@ -9,7 +9,7 @@ const Product = ({ product = {} }) => {
       <div className="card h-100  " id="product">
         <img
           src={require(`../../images/${product.id}.jpg`)}
-          alt="/"
+          alt={product.name}
           className="card-img-top pointer"
           onClick={() =>nav(`/single/${product.id}`)}
           title={product.name}

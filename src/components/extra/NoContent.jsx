@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const NoContent = ({text="abc", btnText='xyz'}) => {
+const NoContent = ({text="", btnText=''}) => {
 let nav = useNavigate()
   return (
     <div className='text-white text-center my-5 mx-auto p-0 p-md-5 rounded'>

@@ -6,13 +6,15 @@ import Single from "./pages/Single";
 import {useDispatch, useSelector} from "react-redux"
 import {useEffect} from "react"
 import {actions as cartActions} from "./global/slices/cartSlice"
+import { useLocation } from "react-router-dom";
 
 
 function App() {
+  const location = useLocation()
   const dispatch = useDispatch()
   const {items} = useSelector(state => state.cart)
-  useEffect(() => {dispatch(cartActions.calculateCartNumbers())}, [items])
-
+  useEffect(() => {dispatch(cartActions.calculateCartNumbers())}, [items, dispatch])
+  useEffect(( )=>{ window.scrollTo(0,0 )}, [location])
   return (
     <div className="wrapper bg-dark text-white">
       <Navbar title="React Shop!"/>
